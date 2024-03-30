@@ -13,7 +13,8 @@
   "autoFolders": [
     "4_Wing_Piece",
     "Left_Center_Piece",
-    "Mid_Center_Piece"
+    "Mid_Center_Piece",
+    "Right_Center_Piece"
   ],
   "defaultMaxVel": 4.5,
   "defaultMaxAccel": 2.5,

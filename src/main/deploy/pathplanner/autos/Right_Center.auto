@@ -1,0 +1,61 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.3072559478452292,
+      "y": 3.2715265430530858
+    },
+    "rotation": -56.888658039628005
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootDynamic"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Schligger"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootDynamic"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "schlong"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootDynamic"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Schlop"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootDynamic"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "Right_Center_Piece",
+  "choreoAuto": false
+}

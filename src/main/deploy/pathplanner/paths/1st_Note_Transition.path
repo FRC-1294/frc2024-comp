@@ -3,15 +3,15 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.7358234536288891,
-        "y": 4.4744363362600605
+        "x": 0.7450681568029804,
+        "y": 4.470408940817881
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.9425431374732121,
-        "y": 4.116387340917117
+        "x": 0.9517878406473032,
+        "y": 4.112359945474938
       },
-      "isLocked": true,
+      "isLocked": false,
       "linkedName": "Right_Subwoofer_Shot"
     },
     {
@@ -40,7 +40,7 @@
         "y": 4.687156040978748
       },
       "nextControl": null,
-      "isLocked": true,
+      "isLocked": false,
       "linkedName": null
     }
   ],

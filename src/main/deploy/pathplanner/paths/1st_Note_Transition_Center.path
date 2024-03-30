@@ -3,59 +3,53 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.9,
-        "y": 7.0
+        "x": 1.3140292947252563,
+        "y": 5.513504360342055
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.9997063187110062,
-        "y": 7.007658329393493
+        "x": 1.442722885445771,
+        "y": 4.511049022098044
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.12,
-        "y": 7.437336228925141
+        "x": 2.506138345610025,
+        "y": 4.1385149436965545
       },
       "prevControl": {
-        "x": 8.680205232035027,
-        "y": 7.494645741404809
+        "x": 2.310363728630702,
+        "y": 4.226929286848507
       },
       "nextControl": {
-        "x": 7.38972144610956,
-        "y": 7.362628058589451
+        "x": 2.7161120988908647,
+        "y": 4.043688087376175
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.043688087376175,
-        "y": 6.881720430107526
+        "x": 2.63,
+        "y": 4.65
       },
       "prevControl": {
-        "x": 4.582500880253881,
-        "y": 6.917508336323527
+        "x": 2.8922191177715693,
+        "y": 4.348488696977394
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Center_Left_Redezvous"
+      "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.85,
-      "rotationDegrees": 7.0,
-      "rotateFast": true
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "IntakeUntilNote",
-      "waypointRelativePos": 0.3,
+      "waypointRelativePos": 0,
       "command": {
         "type": "sequential",
         "data": {
@@ -77,25 +71,6 @@
               "data": {
                 "name": "Handoff"
               }
-            },
-            {
-              "type": "parallel",
-              "data": {
-                "commands": [
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "AutoAimWristSetpoint"
-                    }
-                  },
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "StartLauncherAutoAim"
-                    }
-                  }
-                ]
-              }
             }
           ]
         }
@@ -104,17 +79,20 @@
   ],
   "globalConstraints": {
     "maxVelocity": 4.5,
-    "maxAcceleration": 3.5,
+    "maxAcceleration": 2.5,
     "maxAngularVelocity": 300.0,
     "maxAngularAcceleration": 120.0
   },
   "goalEndState": {
-    "velocity": 0.0,
-    "rotation": 30.0,
+    "velocity": 0,
+    "rotation": -19.860000000000014,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Center_Left",
-  "previewStartingState": null,
-  "useDefaultConstraints": false
+  "folder": "Wing_Focused",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
 }
