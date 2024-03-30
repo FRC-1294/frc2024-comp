@@ -35,13 +35,12 @@ public class TimedHandoff extends Command {
     //accelerates intake if it runs for too long
     if (time.get() > 0.5) {
       mIntake.innerMotorAtSpeed(Math.min(IntakeConstants.INNER_INTAKE_SPEED_HANDOFF + time.get() * IntakeConstants.HANDOFF_TIMER_MULTIPLIER, 1));
+      mLauncher.runIndexer(Math.min(LauncherConstants.INDEXER_VELOCITY_INDEXING + time.get() * IntakeConstants.HANDOFF_TIMER_MULTIPLIER, 1));
     }
     else {
       mIntake.innerMotorAtSpeed(IntakeConstants.INNER_INTAKE_SPEED_HANDOFF);
+      mLauncher.runIndexer(LauncherConstants.INDEXER_VELOCITY_INDEXING);
     }
-    mLauncher.runIndexer(LauncherConstants.INDEXER_VELOCITY_INDEXING);
-
-
   }
 
   // Called once the command ends or is interrupted.

@@ -78,7 +78,7 @@ public class DefaultMechCommand{
         }));
 
         BooleanSupplier readyToAim = ()-> mMechState == mReadyForAim;
-        new Trigger(readyToAim).onTrue(new InstantCommand(()->Input.enableRumble(JoystickConstants.XBOX_RUMBLE_MEDIUM)));
+        new Trigger(readyToAim).onTrue(new InstantCommand(()->Input.enableRumble(JoystickConstants.XBOX_RUMBLE_SOFT)));
 
         BooleanSupplier readyToLaunch = ()-> mMechState == mReadyForLaunch;
         new Trigger(readyToLaunch).onTrue(new InstantCommand(()->Input.enableRumble(JoystickConstants.XBOX_RUMBLE_VIGEROUS)));
@@ -153,8 +153,8 @@ public class DefaultMechCommand{
             mMechState.launch().schedule();
 
         } else if (Math.abs(Input.getLeftTrigger()) > LauncherConstants.INDEX_TRIGGER_DEADZONE) {
-                mMechState.index((Input.getLeftTrigger()-LauncherConstants.INDEX_TRIGGER_DEADZONE)
-                *(Input.getReverseButton() ? -1 : 1)*0.25).schedule();
+                mMechState.index(Math.pow((Input.getLeftTrigger()-LauncherConstants.INDEX_TRIGGER_DEADZONE)
+                ,2)*(Input.getReverseButton() ? -1 : 1)).schedule();
         }
 
         if (Math.abs(Input.getLeftStickY()) > 0.1) {

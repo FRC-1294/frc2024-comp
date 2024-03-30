@@ -8,7 +8,7 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.9864372881861521,
+        "x": 0.9864372881861518,
         "y": 4.21704915481627
       },
       "isLocked": false,
@@ -16,76 +16,76 @@
     },
     {
       "anchor": {
-        "x": 4.230321253435299,
-        "y": 1.7657383062513878
+        "x": 3.0547794428922193,
+        "y": 1.693336720006773
       },
       "prevControl": {
-        "x": 1.8664231923058432,
-        "y": 2.1856858128130687
+        "x": 0.657816448862925,
+        "y": 1.830953422964996
       },
       "nextControl": {
-        "x": 7.205829984359814,
-        "y": 1.2371379013306998
+        "x": 6.085486044845965,
+        "y": 1.5193349305617516
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.464395307168992,
-        "y": 2.616250998267763
+        "x": 8.493776987553977,
+        "y": 2.5535517737702134
       },
       "prevControl": {
-        "x": 8.285394317208397,
-        "y": 2.526750503288371
+        "x": 8.315981310092413,
+        "y": 2.4616801781358055
       },
       "nextControl": {
-        "x": 8.640502326045956,
-        "y": 2.7043045077053547
+        "x": 8.726359074339774,
+        "y": 2.6737329150333964
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.248810659783482,
-        "y": 1.7657383062513878
+        "x": 5.4999576665820005,
+        "y": 1.747523495046989
       },
       "prevControl": {
-        "x": 7.283270062035619,
-        "y": 1.284830677769465
+        "x": 7.240707814748964,
+        "y": 1.659469985606636
       },
       "nextControl": {
-        "x": 1.8565631362991821,
-        "y": 2.1448668200178727
+        "x": 3.0809466949077122,
+        "y": 1.8698859177386855
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 0.7358234536288891,
-        "y": 4.4744363362600605
+        "x": 2.7906189145711626,
+        "y": 2.316484632969266
       },
       "prevControl": {
-        "x": 1.0067573288262333,
-        "y": 4.1764090735361075
+        "x": 3.0954195241723816,
+        "y": 2.0997375328084
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_Subwoofer_Shot"
+      "linkedName": "Center_Right_Shot"
     }
   ],
   "rotationTargets": [
     {
       "waypointRelativePos": 2.0,
-      "rotationDegrees": 23.991960476060555,
-      "rotateFast": false
+      "rotationDegrees": 24.0,
+      "rotateFast": true
     },
     {
       "waypointRelativePos": 1.4,
       "rotationDegrees": 11.144914716548609,
-      "rotateFast": false
+      "rotateFast": true
     }
   ],
   "constraintZones": [],
@@ -113,18 +113,6 @@
               "type": "named",
               "data": {
                 "name": "Handoff"
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "StartLauncherSW"
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "HandoffSetpoint"
               }
             }
           ]

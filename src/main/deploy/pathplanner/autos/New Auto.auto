@@ -12,33 +12,15 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "ShootFromSubwoofer"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "Schligger"
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "ShootFromSubwoofer"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "schlong"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "ShootFromSubwoofer"
           }
         }
       ]

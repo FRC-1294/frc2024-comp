@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 3.257979849293032,
-        "y": 7.1526543053086105
+        "x": 3.393446786893574,
+        "y": 7.2948945897891795
       },
       "prevControl": {
-        "x": 2.194564389128778,
-        "y": 6.73270679874693
+        "x": 1.9913639827279654,
+        "y": 6.786893573787148
       },
       "nextControl": null,
       "isLocked": false,
@@ -60,25 +60,6 @@
               "type": "named",
               "data": {
                 "name": "Handoff"
-              }
-            },
-            {
-              "type": "parallel",
-              "data": {
-                "commands": [
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "AutoAimWristSetpoint"
-                    }
-                  },
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "StartLauncherAutoAim"
-                    }
-                  }
-                ]
               }
             }
           ]

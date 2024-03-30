@@ -78,7 +78,7 @@ public class AimingConstants {
 
     public static final int WRIST_THROUGHBORE_ENCODER_ID = 0;
     public static final double WRIST_THROUGHBORE_GEAR_RATIO = 1;
-    public static final double WRIST_THROUGHBORE_ENCODER_OFFSET = 271+1+62.2+1-24.2-54.1-89.2-4.1+0.3-0.15;//298.2-177.44-0.6+0.65+9.2-94.2-0.62+255.0;
+    public static final double WRIST_THROUGHBORE_ENCODER_OFFSET = 271+1+62.2+1-24.2-54.1-89.2-4.1+0.3-0.15-.7-0.48;//298.2-177.44-0.6+0.65+9.2-94.2-0.62+255.0;
     public static final double COG_OFFSET = 22;
     public static final double WRIST_KS = 0.005;
 
@@ -90,7 +90,7 @@ public class AimingConstants {
     public static final int CONNECTION_THRESH_HZ = 945;
 
     public static final InterpolatingDoubleTreeMap AIM_MAP = new InterpolatingDoubleTreeMap();
-    public static final double MAX_SHOT_DIST_METERS = 5.2;
+    public static final double MAX_SHOT_DIST_METERS = 4.5;
     public static final double MAX_WRIST_ACCURACY_DEG = 0.5;
     private static final double TOLERANCE_DAMPENING_CONSTANT = 0.15;
     private static final double ROTATION_PADDING_METERS = 0.15;
@@ -103,9 +103,9 @@ public class AimingConstants {
     }
 
     public static double getPolynomialRegression(){
-        if (FieldConstants.getSpeakerDistance()>4.6){
+        if (FieldConstants.getSpeakerDistance()>4.4){
             return -15 + 16.1*FieldConstants.getSpeakerDistance() - 1.65*Math.pow(FieldConstants.getSpeakerDistance(), 2) + 0.0683*Math.pow(FieldConstants.getSpeakerDistance(), 3)
-            + (16.1 - 3.3*FieldConstants.getSpeakerDistance() + 0.2049*Math.pow(FieldConstants.getSpeakerDistance(),2))*0.15;
+            + (16.1 - 3.3*FieldConstants.getSpeakerDistance() + 0.2049*Math.pow(FieldConstants.getSpeakerDistance(),2))*0.12;
         }else{
             return -7.26 + 7.65*FieldConstants.getSpeakerDistance() + 1.27*Math.pow(FieldConstants.getSpeakerDistance(), 2) - 0.25*Math.pow(FieldConstants.getSpeakerDistance(), 3)
             + (7.625 + 2.54*FieldConstants.getSpeakerDistance() - 0.75*Math.pow(FieldConstants.getSpeakerDistance(),2))*0.74;
@@ -125,6 +125,7 @@ public class AimingConstants {
     }
 
     public static double getSwerveAlignmentToleranceDeg(){
-        return Math.toDegrees(Math.atan2((FieldConstants.SPEAKER_WIDTH_METERS/2)-AimingConstants.ROTATION_PADDING_METERS,FieldConstants.getSpeakerDistance()));
+        return 2;
+        //return Math.toDegrees(Math.atan2((FieldConstants.SPEAKER_WIDTH_METERS/2)-AimingConstants.ROTATION_PADDING_METERS,FieldConstants.getSpeakerDistance()));
     }
 } 

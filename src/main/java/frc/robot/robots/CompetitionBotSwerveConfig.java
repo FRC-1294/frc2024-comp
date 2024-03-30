@@ -26,7 +26,7 @@ public class CompetitionBotSwerveConfig extends SwerveConfig{
                 PHYSICAL_MAX_SPEED_MPS = 4.625;
         
                 TELE_MAX_SPEED_MPS = 4.625;
-                TELE_MAX_ROT_SPEED_RAD_SEC = 2 * Math.PI;
+                TELE_MAX_ROT_SPEED_RAD_SEC = 2 * Math.PI * 1.5;
         
                 TELE_MAX_ACC_MPS2 = 5.0;
                 TELE_MAX_ROT_ACC_RAD_SEC2 = 4 * Math.PI;

@@ -132,7 +132,7 @@ public class DefaultDriveCommand extends Command {
 
     if (Input.getVelLock()){ //hold
       double mag = Math.sqrt(x*x+y*y);
-      if (mag > .1){
+      if (mag > .3){
         double targetAngle = Math.toDegrees(Math.atan2(y, x));
         rot = Math.toRadians(mVelLock.calculate(SwerveSubsystem.getHeading() + SwerveSubsystem.getRate() * .4, targetAngle));
         rot = MathUtil.clamp(rot, -mSwerve.mConfig.TELE_MAX_ROT_SPEED_RAD_SEC, mSwerve.mConfig.TELE_MAX_ROT_SPEED_RAD_SEC);
@@ -152,7 +152,7 @@ public class DefaultDriveCommand extends Command {
   }
 
   public static boolean getAlignedToSpeaker(){
-    return (SwerveSubsystem.getRobotPose().getRotation().getDegrees()-getRotationToSpeakerDegrees())>AimingConstants.getSwerveAlignmentToleranceDeg()
+    return (Math.abs(SwerveSubsystem.getRobotPose().getRotation().getDegrees()-getRotationToSpeakerDegrees()))<=AimingConstants.getSwerveAlignmentToleranceDeg()
      && FieldConstants.getSpeakerDistance()<=AimingConstants.MAX_SHOT_DIST_METERS;
   }
 
@@ -160,12 +160,12 @@ public class DefaultDriveCommand extends Command {
     double targAngle;
     Optional<Alliance> alliance = DriverStation.getAlliance();
     if (alliance.isPresent() && alliance.get() == DriverStation.Alliance.Red){
-      double targerAngle = Math.atan2(FieldConstants.Red.SPEAKER.getPose().getY() - SwerveSubsystem.getRobotPose().getY(), SwerveSubsystem.getRobotPose().getX() - FieldConstants.Red.SPEAKER.getPose().getX() - FieldConstants.SPEAKER_LENGTH_METERS);
+      double targerAngle = Math.atan2(FieldConstants.Red.SPEAKER.getPose().getY() - SwerveSubsystem.getRobotPose().getY(), SwerveSubsystem.getRobotPose().getX() - (FieldConstants.Red.SPEAKER.getPose().getX() - FieldConstants.SPEAKER_LENGTH_METERS));
       SmartDashboard.putNumber("targeranlge", Math.toDegrees(targerAngle));
       targAngle = -Math.toDegrees(targerAngle);
 
     } else{
-      double targerAngle = Math.atan2(SwerveSubsystem.getRobotPose().getY() - FieldConstants.Blue.SPEAKER.getPose().getY(), SwerveSubsystem.getRobotPose().getX() - FieldConstants.Blue.SPEAKER.getPose().getX() + FieldConstants.SPEAKER_LENGTH_METERS);
+      double targerAngle = Math.atan2(SwerveSubsystem.getRobotPose().getY() - FieldConstants.Blue.SPEAKER.getPose().getY(), SwerveSubsystem.getRobotPose().getX() - (FieldConstants.Blue.SPEAKER.getPose().getX() + FieldConstants.SPEAKER_LENGTH_METERS));
       SmartDashboard.putNumber("targeranlge", Math.toDegrees(targerAngle));
       targAngle = Math.toDegrees(targerAngle);
     }

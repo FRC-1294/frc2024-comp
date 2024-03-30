@@ -8,7 +8,7 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.9425431374732123,
+        "x": 0.9425431374732121,
         "y": 4.116387340917117
       },
       "isLocked": true,
@@ -77,25 +77,6 @@
               "data": {
                 "name": "Handoff"
               }
-            },
-            {
-              "type": "parallel",
-              "data": {
-                "commands": [
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "AutoAimWristSetpoint"
-                    }
-                  },
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "StartLauncherAutoAim"
-                    }
-                  }
-                ]
-              }
             }
           ]
         }
@@ -109,7 +90,7 @@
     "maxAngularAcceleration": 120.0
   },
   "goalEndState": {
-    "velocity": 1.5,
+    "velocity": 0.0,
     "rotation": -19.860000000000014,
     "rotateFast": true
   },

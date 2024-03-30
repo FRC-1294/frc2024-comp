@@ -32,16 +32,16 @@
     },
     {
       "anchor": {
-        "x": 8.256709846753028,
-        "y": 7.410041486749641
+        "x": 8.358310049953435,
+        "y": 7.491321649309965
       },
       "prevControl": {
-        "x": 8.29734992803319,
-        "y": 7.416814833629668
+        "x": 8.39878304782932,
+        "y": 7.4990307917625145
       },
       "nextControl": {
-        "x": 8.047982854656139,
-        "y": 7.375253654733495
+        "x": 7.931589196511726,
+        "y": 7.410041486749641
       },
       "isLocked": false,
       "linkedName": null
@@ -52,12 +52,12 @@
         "y": 6.881720430107526
       },
       "prevControl": {
-        "x": 6.678520023706714,
-        "y": 7.10524087714842
+        "x": 6.610786554906443,
+        "y": 7.179747692828719
       },
       "nextControl": {
-        "x": 4.821018621159083,
-        "y": 6.733740596638894
+        "x": 4.835045531628156,
+        "y": 6.675666370091656
       },
       "isLocked": false,
       "linkedName": null
@@ -78,34 +78,18 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 2.5,
-      "rotationDegrees": 6.274074420522689,
+      "waypointRelativePos": 1.6,
+      "rotationDegrees": 6.302270465761241,
       "rotateFast": true
-    },
-    {
-      "waypointRelativePos": 1.25,
-      "rotationDegrees": -0.6171400902917834,
-      "rotateFast": false
     }
   ],
   "constraintZones": [
     {
       "name": "New Constraints Zone",
-      "minWaypointRelativePos": 1.6500000000000001,
-      "maxWaypointRelativePos": 2.5,
-      "constraints": {
-        "maxVelocity": 2.0,
-        "maxAcceleration": 0.9,
-        "maxAngularVelocity": 300.0,
-        "maxAngularAcceleration": 120.0
-      }
-    },
-    {
-      "name": "New Constraints Zone",
-      "minWaypointRelativePos": 0,
+      "minWaypointRelativePos": 3.6,
       "maxWaypointRelativePos": 4.0,
       "constraints": {
-        "maxVelocity": 3.0,
+        "maxVelocity": 2.0,
         "maxAcceleration": 2.0,
         "maxAngularVelocity": 300.0,
         "maxAngularAcceleration": 120.0
@@ -139,7 +123,7 @@
   ],
   "globalConstraints": {
     "maxVelocity": 4.5,
-    "maxAcceleration": 2.5,
+    "maxAcceleration": 3.5,
     "maxAngularVelocity": 300.0,
     "maxAngularAcceleration": 120.0
   },
@@ -154,5 +138,5 @@
     "rotation": 0,
     "velocity": 0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

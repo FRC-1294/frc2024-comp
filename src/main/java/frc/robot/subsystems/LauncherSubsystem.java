@@ -87,6 +87,7 @@ public class LauncherSubsystem extends SubsystemBase {
 
     SmartDashboard.putBoolean("Piece in Indexer", pieceInIndexer());
     SmartDashboard.putNumber("Flywheel Speed", actualVelocity);
+    SmartDashboard.putNumber("other flywheel speed", getOtherVelocity());
     SmartDashboard.putNumber("indexer current",mIndexer.getOutputCurrent());
     SmartDashboard.putNumber("flywheel left current",mLeaderFlywheel.getStatorCurrent().getValueAsDouble());
     SmartDashboard.putNumber("flywheel right current",mFollowerFlywheel.getStatorCurrent().getValueAsDouble());
@@ -155,6 +156,10 @@ public class LauncherSubsystem extends SubsystemBase {
 
   public double getCurrentVelocity() {
     return mLeaderFlywheel.getVelocity().getValueAsDouble()*60;
+  }
+
+  public double getOtherVelocity() {
+    return mFollowerFlywheel.getVelocity().getValueAsDouble()*60;
   }
   // private double toFalconUnits(double val){
   //   return val/(LauncherConstants.FLYWHEEL_SENSOR_TO_MECHANISM*60);

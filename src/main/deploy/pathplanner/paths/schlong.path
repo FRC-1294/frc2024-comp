@@ -3,91 +3,59 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.7358234536288891,
-        "y": 4.4744363362600605
+        "x": 2.7906189145711626,
+        "y": 2.316484632969266
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.4199559053826407,
-        "y": 3.0046314280753625
+        "x": 3.153771907543816,
+        "y": 2.2384624502582335
       },
       "isLocked": false,
-      "linkedName": "Right_Subwoofer_Shot"
+      "linkedName": "Center_Right_Shot"
     },
     {
       "anchor": {
-        "x": 3.745660824654983,
-        "y": 1.3478960291253912
+        "x": 8.636017272034545,
+        "y": 0.6841080348827369
       },
       "prevControl": {
-        "x": 2.2216577766488865,
-        "y": 1.943950554567775
+        "x": 8.935304160253699,
+        "y": 0.6001621796074477
       },
       "nextControl": {
-        "x": 5.612777893996768,
-        "y": 0.6176457975606049
+        "x": 7.920696922474928,
+        "y": 0.8847455532748899
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.741736402391723,
-        "y": 0.7950444729718297
+        "x": 2.7906189145711626,
+        "y": 2.316484632969266
       },
       "prevControl": {
-        "x": 9.05255673687069,
-        "y": 0.7918401396266859
-      },
-      "nextControl": {
-        "x": 8.084721755029094,
-        "y": 0.8018178198518563
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 3.75243417153501,
-        "y": 1.3411226822453635
-      },
-      "prevControl": {
-        "x": 5.563584178230959,
-        "y": 0.6341386884035227
-      },
-      "nextControl": {
-        "x": 2.208111082888833,
-        "y": 1.9439505545677747
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 0.7358234536288891,
-        "y": 4.4744363362600605
-      },
-      "prevControl": {
-        "x": 1.4586639108667792,
-        "y": 3.0246426704647806
+        "x": 4.131741596816528,
+        "y": 2.0252307171281014
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_Subwoofer_Shot"
+      "linkedName": "Center_Right_Shot"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.8,
-      "rotationDegrees": -0.10537984735155662,
-      "rotateFast": false
+      "waypointRelativePos": 0.8,
+      "rotationDegrees": -12.73449769988684,
+      "rotateFast": true
     }
   ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 1.25,
+      "waypointRelativePos": 0.65,
       "command": {
         "type": "sequential",
         "data": {
@@ -108,18 +76,6 @@
               "type": "named",
               "data": {
                 "name": "Handoff"
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "StartLauncherSW"
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "HandoffSetpoint"
               }
             }
           ]

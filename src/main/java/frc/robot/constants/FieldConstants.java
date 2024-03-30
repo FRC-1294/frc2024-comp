@@ -42,7 +42,7 @@ public class FieldConstants {
         }
     }
 
-    public static final double SPEAKER_LENGTH_METERS = 0.46;
+    public static final double SPEAKER_LENGTH_METERS = 0.36;
     public static final double SPEAKER_WIDTH_METERS = 1.05;
 
     public static double getSpeakerDistance(Pose2d robotPose) {
