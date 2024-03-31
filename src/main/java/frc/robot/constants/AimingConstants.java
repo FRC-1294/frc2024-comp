@@ -78,14 +78,14 @@ public class AimingConstants {
 
     public static final int WRIST_THROUGHBORE_ENCODER_ID = 0;
     public static final double WRIST_THROUGHBORE_GEAR_RATIO = 1;
-    public static final double WRIST_THROUGHBORE_ENCODER_OFFSET = 271+1+62.2+1-24.2-54.1-89.2-4.1+0.3-0.15-.7-0.48;//298.2-177.44-0.6+0.65+9.2-94.2-0.62+255.0;
+    public static final double WRIST_THROUGHBORE_ENCODER_OFFSET = 271+1+62.2+1-24.2-54.1-89.2-4.1+0.3-0.15-.7-0.48+298.2-177.44-0.6+0.65+9.2-94.2-0.62+255.0-95.0;
     public static final double COG_OFFSET = 22;
     public static final double WRIST_KS = 0.005;
 
 
     // If false, then motors are physically inverted
     public static final boolean ELEVATOR_LEFT_IS_NORMAL = true;
-    public static final boolean WRIST_LEFT_IS_NORMAL = true;
+    public static final boolean WRIST_LEFT_IS_NORMAL = false;
 
     public static final int CONNECTION_THRESH_HZ = 945;
 

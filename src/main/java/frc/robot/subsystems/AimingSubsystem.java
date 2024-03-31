@@ -130,7 +130,7 @@ public class AimingSubsystem extends SubsystemBase {
 
     //follower configuration
     mRightWristMotor.follow(mLeftWristMotor, true);
-    mRightElevatorMotor.follow(mLeftElevatorMotor, true);
+    mRightElevatorMotor.follow(mLeftElevatorMotor, false);
 
     // mLeftElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
     // mRightElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
@@ -163,7 +163,7 @@ public class AimingSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Desired Wrist Rotation", getDesiredWristRotation());
     updateMotorModes();
     // elevatorPeriodic();
-    // wristPeriodic();
+    wristPeriodic();
     debugSmartDashboard();
   }
 
@@ -199,6 +199,7 @@ public class AimingSubsystem extends SubsystemBase {
 
     double wristFeedforwardCalculation = Math.cos(Math.toRadians(mCurrentWristRotationDeg-AimingConstants.COG_OFFSET))*AimingConstants.WRIST_KG;
     mLeftWristMotor.set(wristPIDCalculation + wristFeedforwardCalculation + Math.signum(wristPIDCalculation)*AimingConstants.WRIST_KS);
+
   }
 
   private void updateMotorModes() {

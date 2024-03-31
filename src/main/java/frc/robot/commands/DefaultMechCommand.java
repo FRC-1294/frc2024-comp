@@ -252,7 +252,7 @@ public class DefaultMechCommand{
     }
 
     public static boolean isAimAtSP() {
-        return mAimingSubsystem.atWristSetpoint() && mAimingSubsystem.atElevatorSetpoint();
+        return mAimingSubsystem.atWristSetpoint();
     }
 
     public static MechState getMechState(){
