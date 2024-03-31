@@ -21,8 +21,8 @@ public class ReadyForLaunch extends MechState {
     
     @Override
     public Command launch() {
-      return mLauncherSubsystem.indexUntilNoteLaunchedCommand();
-      // return MechState.mStrangeIndexUntilLaunchCommand;
+      //return mLauncherSubsystem.indexUntilNoteLaunchedCommand();
+      return MechState.mStrangeIndexUntilLaunchCommand;
     }
 
     @Override

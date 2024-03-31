@@ -178,7 +178,7 @@ public class DefaultMechCommand{
         }
 
 
-
+        SmartDashboard.putBoolean("isLaunching", isLaunching);
         SmartDashboard.putString("DesiredState", mDesiredState.name());
         SmartDashboard.putString("CurrentState", mMechState.getClass().getSimpleName());
         SmartDashboard.putBoolean("AutoAim Scheduled", mMechState.mStaticAutoAimCommand.isScheduled());

@@ -47,6 +47,7 @@ public class LauncherSubsystem extends SubsystemBase {
   public void configureDevices() {
     resetEncoders();
 
+
     mLeaderFlywheel.getConfigurator().apply(new TalonFXConfiguration());
     mFollowerFlywheel.getConfigurator().apply(new TalonFXConfiguration());
 

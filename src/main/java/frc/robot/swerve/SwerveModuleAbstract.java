@@ -59,10 +59,12 @@ import frc.robot.Util.PIDParameters;
             mTransPID = transPID.toWPIController();
             mTransFF = transPID.toWPIMotorFeedForward();
 
+            
 
             // ----Setting Hardware
             // Motor Controllers
             mRotMotor = new CANSparkMax(mRotID, CANSparkMax.MotorType.kBrushless);
+            mRotMotor.restoreFactoryDefaults();
             // Encoders
             mRotRelativeEncoder = mRotMotor.getEncoder();
             mRotEncoder = new CANcoder(mRotEncoderID,"DriveMotors");

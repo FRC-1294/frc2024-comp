@@ -25,7 +25,7 @@ public class SwerveVoltageCharacterization extends Command {
   public SwerveVoltageCharacterization(SwerveSubsystem swerve) {
     mSwerve = swerve;
     mModules = mSwerve.getRawModules();
-    mTargVelMPS = 0.5 ;
+    mTargVelMPS = 3;
     addRequirements(mSwerve);
   }
 
@@ -52,8 +52,8 @@ public class SwerveVoltageCharacterization extends Command {
             SmartDashboard.putNumber("avgkV"+i, mVelocityConversion[i]);
         }
     }else{
-      mSwerve.setChassisSpeed(mIncrement, 0, 0,false,true);
-      mIncrement +=0.01;
+      mSwerve.setChassisSpeed(mIncrement, 0, 0,true,true);
+      mIncrement +=0.016;
     }
   }
 
@@ -66,6 +66,6 @@ public class SwerveVoltageCharacterization extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return mTimer.get()>4;
+    return mTimer.get()>2;
   }
 }

@@ -41,12 +41,15 @@ public class StrangeIndexUntilLaunchCommand extends Command {
     if (mLauncherSubsystem.pieceInIndexer() && reverse.isFinished()){
       didPassThrough = true;
     }
-  }
+    if (didPassThrough && !mLauncherSubsystem.pieceInIndexer()){
+          DefaultMechCommand.isLaunching = false;
+    } }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     DefaultMechCommand.isLaunching = false;
+    mLauncherSubsystem.stopIndexer();
   }
   
 
