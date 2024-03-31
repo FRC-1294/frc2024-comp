@@ -15,7 +15,7 @@ public class StrangeIndexUntilLaunchCommand extends Command {
 
   Command reverse;
   LauncherSubsystem mLauncherSubsystem;
-  boolean didPassThrough = false;
+  boolean currentPassThrough = false;
 
   /** Creates a new StrangeIndexUntilLaunchCommand. */
   public StrangeIndexUntilLaunchCommand(LauncherSubsystem launcherSubsystem) {
@@ -26,29 +26,25 @@ public class StrangeIndexUntilLaunchCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    reverse = mLauncherSubsystem.reverse();
     DefaultMechCommand.isLaunching = true;
-    new SequentialCommandGroup(
-      reverse,
-      new InstantCommand(() -> mLauncherSubsystem.runIndexer(LauncherConstants.INDEXER_VELOCITY_LAUNCHING))
-    ).schedule();
-
+    currentPassThrough = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (mLauncherSubsystem.pieceInIndexer() && reverse.isFinished()){
-      didPassThrough = true;
+    if (!currentPassThrough){
+      mLauncherSubsystem.runIndexer(-0.3);
+      currentPassThrough = true;
     }
-    if (didPassThrough && !mLauncherSubsystem.pieceInIndexer()){
-          DefaultMechCommand.isLaunching = false;
-    } }
+    if (!mLauncherSubsystem.pieceInIndexer()){
+      mLauncherSubsystem.runIndexer(0.3);
+    }
+}
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    DefaultMechCommand.isLaunching = false;
     mLauncherSubsystem.stopIndexer();
   }
   
@@ -56,6 +52,6 @@ public class StrangeIndexUntilLaunchCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return didPassThrough && !mLauncherSubsystem.pieceInIndexer();
+    return currentPassThrough && mLauncherSubsystem.pieceInIndexer();
   }
 }

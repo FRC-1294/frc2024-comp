@@ -164,7 +164,8 @@ public class LauncherSubsystem extends SubsystemBase {
     return new FunctionalCommand(
     () -> runIndexer(LauncherConstants.INDEXER_VELOCITY_LAUNCHING), 
     ()->{},
-    (Interruptable)->{stopIndexer();}, 
+    (Interruptable)->{DefaultMechCommand.isLaunching = true;
+      stopIndexer();}, 
     ()->!pieceInIndexer()
     );
   } 

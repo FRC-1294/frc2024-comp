@@ -1,5 +1,6 @@
 package frc.robot.states;
 
+import javax.swing.GroupLayout.SequentialGroup;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -53,7 +54,7 @@ public abstract class MechState {
             mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM),
             mAimingSubsystem.waitUntilAutoAimSetpointTracked()
         );
-        mStrangeIndexUntilLaunchCommand = new StrangeIndexUntilLaunchCommand(launcherSubsystem);
+        mStrangeIndexUntilLaunchCommand = new SequentialGroup(StrangeIndexUntilLaunchCommand(launcherSubsystem),mLaunchCommand);
         // new ParallelCommandGroup(mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM), 
         // mAimingSubsystem.waitUntilWristSetpoint(() -> AimingConstants.getPolynomialRegression(FieldConstants.getSpeakerDistance())));
     }
