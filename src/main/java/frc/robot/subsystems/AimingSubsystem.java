@@ -132,8 +132,11 @@ public class AimingSubsystem extends SubsystemBase {
     mRightWristMotor.follow(mLeftWristMotor, true);
     mRightElevatorMotor.follow(mLeftElevatorMotor, true);
 
-    mLeftElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
-    mRightElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
+    // mLeftElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
+    // mRightElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
+
+    mLeftElevatorEncoder.setPositionConversionFactor(1.0);
+    mRightElevatorEncoder.setPositionConversionFactor(1.0);
 
     mLeftElevatorEncoder.setPosition(0);
     mRightElevatorEncoder.setPosition(0);
@@ -159,8 +162,8 @@ public class AimingSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Desired Elevator Extension", getDesiredElevatorDistance());
     SmartDashboard.putNumber("Desired Wrist Rotation", getDesiredWristRotation());
     updateMotorModes();
-    elevatorPeriodic();
-    wristPeriodic();
+    // elevatorPeriodic();
+    // wristPeriodic();
     debugSmartDashboard();
   }
 
@@ -353,7 +356,7 @@ public class AimingSubsystem extends SubsystemBase {
   }
 
   public boolean atSetpoints() {
-    return atElevatorSetpoint() && atWristSetpoint();
+    return atWristSetpoint();
   }
 
   public Command waitUntilSetpoint(AimState state) {

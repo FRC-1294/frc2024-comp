@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
     pathSelector.addOption("Cool Shit", AutoBuilder.buildAuto("6_Piece_V3"));
     pathSelector.addOption("4 Piece RC SW", AutoBuilder.buildAuto("3_Piece_Lower_Center"));
     pathSelector.addOption("2 note", AutoBuilder.buildAuto("New New Auto"));
-    pathSelector.addOption("Goofy ah", AutoBuilder.buildAuto("New Auto"));
+    pathSelector.addOption("Goofy ah", AutoBuilder.buildAuto("Right_Center"));
     pathSelector.addOption("AutoAimTest", AutoBuilder.buildAuto("GoofyAutoAimTest"));
     pathSelector.addOption("One Piece", NamedCommands.getCommand("ShootFromSubwoofer"));
 
@@ -119,8 +119,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    //Not used
-    mDefaultMechCommand.execute();
+    //mDefaultMechCommand.execute();
 
   }
 

@@ -74,7 +74,7 @@ public enum AimState {
 
     public boolean atState(double curWristAngle, double curElevatorHeight, double curLauncherSpeed){
         //return true if the current state is within the tolerance of the desired state ignoring the parameters that are -1
-        return withinWristTolerance(curWristAngle) && withinElevatorTolerance(curElevatorHeight) && withinLauncherTolerance(curLauncherSpeed);
+        return withinWristTolerance(curWristAngle) && withinLauncherTolerance(curLauncherSpeed);
     }
 
     // private double[] getPolarCoordsFromXY(Pose2d curSwervePose){

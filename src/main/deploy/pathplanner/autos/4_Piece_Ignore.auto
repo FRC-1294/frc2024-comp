@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.6,
-      "y": 7.0
+      "x": 1.3140292947252563,
+      "y": 7.166200999068665
     },
     "rotation": 47.58220796418952
   },
@@ -20,19 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Center_Piece_2"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "ShootDynamic"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Center_Piece_3"
+            "pathName": "Center_Piece_Skip"
           }
         },
         {

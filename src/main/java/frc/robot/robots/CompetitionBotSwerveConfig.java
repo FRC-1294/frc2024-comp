@@ -65,7 +65,7 @@ public class CompetitionBotSwerveConfig extends SwerveConfig{
         }
 
         @Override
-        public void initializeSwerveModules() {
+        public void initializeSwerveModules() { 
                                 // Swerve Modules and Other Hardware
                 FRONT_LEFT_MODULE = new KrakenSwerveModule(FRONT_LEFT_ROT_ID,
                                 FRONT_LEFT_TRANS_ID, FRONT_LEFT_ROT_ENC_ID, FRONT_LEFT_ROT_INVERSE,

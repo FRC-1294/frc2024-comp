@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutonomousCommands.Handoff;
+import frc.robot.commands.AutonomousCommands.StrangeIndexUntilLaunchCommand;
 import frc.robot.constants.AimState;
 import frc.robot.constants.AimingConstants;
 import frc.robot.constants.FieldConstants;
@@ -28,6 +29,7 @@ public abstract class MechState {
     public static Command mPodiumPositionCommand;
     public static Command mBrakeIndexerCommand;
     public static Command mStaticAutoAimCommand;
+    public static Command mStrangeIndexUntilLaunchCommand;
 
     public Command mAimStatePositionCommand;
     public static Command mCalculationAutoAimCommand;
@@ -51,6 +53,7 @@ public abstract class MechState {
             mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM),
             mAimingSubsystem.waitUntilAutoAimSetpointTracked()
         );
+        mStrangeIndexUntilLaunchCommand = new StrangeIndexUntilLaunchCommand(launcherSubsystem);
         // new ParallelCommandGroup(mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM), 
         // mAimingSubsystem.waitUntilWristSetpoint(() -> AimingConstants.getPolynomialRegression(FieldConstants.getSpeakerDistance())));
     }

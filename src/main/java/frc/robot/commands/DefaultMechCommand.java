@@ -39,7 +39,8 @@ public class DefaultMechCommand{
 
     private static boolean mUseUltraInstinct = false;
     private static MechState mMechState;
-    public static AimState mDesiredState = AimState.HANDOFF; 
+    public static AimState mDesiredState = AimState.HANDOFF;
+    public static boolean isLaunching = false;
 
     public DefaultMechCommand(IntakeSubsystem intakeSubsystem, LauncherSubsystem launcherSubsystem, AimingSubsystem aimingSubsystem) {
         mIntakeSubsystem = intakeSubsystem;
@@ -92,7 +93,7 @@ public class DefaultMechCommand{
         if (mUseUltraInstinct) {
             return mUltraInstinct;
         }
-        if (!getIntakeBeamBreak() && !getIndexerBeamBreak()) {
+        if (!getIntakeBeamBreak() && !getIndexerBeamBreak() && !isLaunching) {
             return mReadyForIntake;
         }
         else if (getIntakeBeamBreak() && !getIndexerBeamBreak()) {
@@ -103,6 +104,8 @@ public class DefaultMechCommand{
             } else {
                 return mIntaken;
             }
+        } else if (isLaunching){
+            return mReadyForLaunch;
         }
         else if (getIndexerBeamBreak()) {
             if (isFlywheelAtSP() && isAimAtSP() && 
@@ -114,7 +117,8 @@ public class DefaultMechCommand{
             }
         }
         else{
-            return mUltraInstinct;}
+            return mUltraInstinct;
+        }
         
     }
 
@@ -192,12 +196,12 @@ public class DefaultMechCommand{
                 mMechState.index(0.3).schedule();
                 return;
             }
-             else{
-                    mMechState.brakeLauncher().schedule();
-                    mMechState.brakeIndexer().schedule();
-                    if (!MechState.mHandoffPositionCommand.isScheduled()){
-                        mMechState.handoffPosition().schedule();
-                    }
+            else{
+                mMechState.brakeLauncher().schedule();
+                mMechState.brakeIndexer().schedule();
+                if (!MechState.mHandoffPositionCommand.isScheduled()){
+                    mMechState.handoffPosition().schedule();
+                }
             }
         }
         else if (mMechState == mIntaken) {

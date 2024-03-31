@@ -62,8 +62,8 @@ public class SwerveSubsystem extends SubsystemBase {
     jank = new SwerveDriveOdometry(mKinematics, getRotation2d(), getModulePositions());
 
     resetGyro();
-    // resetRobotPose();
-    resetRobotPose(new Pose2d(15.2, 5.6, getRotation2d()));
+    resetRobotPose();
+
 
     SmartDashboard.putData("Field", mField);
   }
@@ -311,6 +311,10 @@ public class SwerveSubsystem extends SubsystemBase {
    */
   public SwerveModuleAbstract[] getRawModules() {
     return mModules;
+  }
+
+  public static double getRoll(){
+    return mPigeon2.getRoll().getValueAsDouble();
   }
 
 
