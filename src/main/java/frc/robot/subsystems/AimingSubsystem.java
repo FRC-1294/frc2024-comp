@@ -130,13 +130,13 @@ public class AimingSubsystem extends SubsystemBase {
 
     //follower configuration
     mRightWristMotor.follow(mLeftWristMotor, true);
-    mRightElevatorMotor.follow(mLeftElevatorMotor, false);
+    mRightElevatorMotor.follow(mLeftElevatorMotor, true);
 
-    // mLeftElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
-    // mRightElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
+    mLeftElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
+    mRightElevatorEncoder.setPositionConversionFactor(AimingConstants.ELEVATOR_ROTATIONS_TO_METERS);
 
-    mLeftElevatorEncoder.setPositionConversionFactor(1.0);
-    mRightElevatorEncoder.setPositionConversionFactor(1.0);
+    // mLeftElevatorEncoder.setPositionConversionFactor(1.0);
+    // mRightElevatorEncoder.setPositionConversionFactor(1.0);
 
     mLeftElevatorEncoder.setPosition(0);
     mRightElevatorEncoder.setPosition(0);
@@ -162,7 +162,7 @@ public class AimingSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Desired Elevator Extension", getDesiredElevatorDistance());
     SmartDashboard.putNumber("Desired Wrist Rotation", getDesiredWristRotation());
     updateMotorModes();
-    // elevatorPeriodic();
+    elevatorPeriodic();
     wristPeriodic();
     debugSmartDashboard();
   }
@@ -176,6 +176,7 @@ public class AimingSubsystem extends SubsystemBase {
     elevatorPIDCalculation = MathUtil.clamp(elevatorPIDCalculation, -AimingConstants.MAX_ELEVATOR_PID_CONTRIBUTION, AimingConstants.MAX_ELEVATOR_PID_CONTRIBUTION);
 
     mLeftElevatorMotor.set(elevatorPIDCalculation);
+    //mLeftElevatorMotor.set(-.2);
   }
 
 
@@ -403,9 +404,9 @@ public class AimingSubsystem extends SubsystemBase {
     } 
 
   public Command waitUntilAutoAimSetpoint() {
-    return new FunctionalCommand(()-> {},
-                                 () -> {setDesiredWristRotation(() -> AimingConstants.getPolynomialRegression());
+    return new FunctionalCommand(()-> {setDesiredWristRotation(() -> AimingConstants.getPolynomialRegression());
                                         setWristToleranceDeg(()->AimingConstants.getAutoAimWristToleranceDegrees());},
+                                 () -> {},
                                 (Interruptable)->{},
                                 this::atWristSetpoint, 
                                 this

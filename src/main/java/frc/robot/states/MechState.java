@@ -48,13 +48,16 @@ public abstract class MechState {
         mTrapPositionCommand = new ParallelCommandGroup(mAimingSubsystem.waitUntilSetpoint(AimState.TRAP), mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.TRAP));
         mPreformHandoffCommand = new Handoff(mIntakeSubsystem, mLauncherSubsystem);
         mPodiumPositionCommand = new ParallelCommandGroup(mAimingSubsystem.waitUntilSetpoint(AimState.PODIUM), mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM));
-        mLaunchCommand = new SequentialCommandGroup(mLauncherSubsystem.indexUntilNoteLaunchedCommand());
+        mLaunchCommand = mLauncherSubsystem.indexUntilNoteLaunchedCommand();
         mBrakeIndexerCommand = new InstantCommand(()->mLauncherSubsystem.stopIndexer(),mLauncherSubsystem);
         mStaticAutoAimCommand = new ParallelCommandGroup(
             mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM),
             mAimingSubsystem.waitUntilAutoAimSetpointTracked()
         );
-        mStrangeIndexUntilLaunchCommand = new SequentialGroup(StrangeIndexUntilLaunchCommand(launcherSubsystem),mLaunchCommand);
+        mStrangeIndexUntilLaunchCommand = new SequentialCommandGroup(
+            new StrangeIndexUntilLaunchCommand(launcherSubsystem),
+            mLaunchCommand
+        );
         // new ParallelCommandGroup(mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM), 
         // mAimingSubsystem.waitUntilWristSetpoint(() -> AimingConstants.getPolynomialRegression(FieldConstants.getSpeakerDistance())));
     }
@@ -105,11 +108,11 @@ public abstract class MechState {
     }
 
     public Command ClimbExtendedState() {
-        return new InstantCommand();
+       return new InstantCommand(()->mAimingSubsystem.setDesiredSetpoint(AimState.CLIMB_UP));
     }
-    
+
     public Command ClimbRetractedState() {
-        return new InstantCommand();
+       return new InstantCommand(()->mAimingSubsystem.setDesiredSetpoint(AimState.CLIMB_DOWN));
     }
 
     public Command setWristSP(AimState state) {

@@ -25,7 +25,7 @@ public class VisionConstants {
   // These are the names as they appear in photonvision of the cameras. These can be changed in the
   // photonvision dashboard
   public static final String CAMERA_NAME_FRONT = "AgniVision2";
-  public static final String CAMERA_NAME_BACK = "AgniVision3";
+  public static final String CAMERA_NAME_BACK = "Arducam_OV9281_USB_Camera";
 
   // These are tunable constants for the reliability of odometry and vision measurements in the form
   // of a vector of (x, y, theta), in meters, meters, and radians respectively
@@ -48,8 +48,8 @@ public class VisionConstants {
         
     );
   public static final Transform3d ROBOT_TO_CAM_VEC_BACK =
-      new Transform3d(new Translation3d(-0.1287653508, 0.205200+0.0123, 0.5492065978),
-        new Rotation3d(0, Math.toRadians(-1.8), Math.toRadians(90)));
+      new Transform3d(new Translation3d(-0.1287653508, -0.205200-0.0123, Units.inchesToMeters(15)),
+        new Rotation3d(0, Math.toRadians(-1.8), Math.toRadians(-90)));
 
   public static final double SINGLE_TAG_AMBIGUITY_THRESH = 0.15;
 }

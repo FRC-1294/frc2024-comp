@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
+import frc.robot.commands.DefaultMechCommand;
 import frc.robot.constants.AimState;
 import frc.robot.constants.LauncherConstants;
 
@@ -83,7 +84,7 @@ public class LauncherSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     double actualVelocity = getCurrentVelocity();
-    mLauncherReady = mDesiredState.withinLauncherTolerance(actualVelocity);
+    mLauncherReady = mDesiredState.withinLauncherTolerance(actualVelocity, getOtherVelocity());
 
     runLauncher();
 
@@ -164,7 +165,7 @@ public class LauncherSubsystem extends SubsystemBase {
     return new FunctionalCommand(
     () -> runIndexer(LauncherConstants.INDEXER_VELOCITY_LAUNCHING), 
     ()->{},
-    (Interruptable)->{DefaultMechCommand.isLaunching = true;
+    (Interruptable)->{DefaultMechCommand.isLaunching = false;
       stopIndexer();}, 
     ()->!pieceInIndexer()
     );

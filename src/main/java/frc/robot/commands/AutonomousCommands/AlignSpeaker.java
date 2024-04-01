@@ -4,6 +4,7 @@
 
 package frc.robot.commands.AutonomousCommands;
 
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.subsystems.SwerveSubsystem;
@@ -27,12 +28,14 @@ public class AlignSpeaker extends Command {
     mSwerve.setChassisSpeed(0, 0, Math.toRadians(
       DefaultDriveCommand.mSpeakerAlignPID.calculate(
         SwerveSubsystem.getRobotPose().getRotation().getDegrees(),
-        DefaultDriveCommand.getRotationToSpeakerDegrees())),false);
+        DefaultDriveCommand.getRotationToSpeakerDegrees())),true, false);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    mSwerve.setChassisSpeed(new ChassisSpeeds());
+  }
 
   // Returns true when the command should end.
   @Override

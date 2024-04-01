@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.7906189145711626,
-        "y": 2.316484632969266
+        "x": 2.8583523833714337,
+        "y": 3.2173397680128692
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.129286258572518,
-        "y": 3.027686055372109
+        "x": 3.9962746592159855,
+        "y": 2.2893912454491567
       },
       "isLocked": false,
       "linkedName": "Center_Right_Shot"
     },
     {
       "anchor": {
-        "x": 5.222250444500889,
-        "y": 3.745660824654981
+        "x": 5.3238506477012955,
+        "y": 4.07755482177631
       },
       "prevControl": {
-        "x": 4.398502699622217,
-        "y": 3.530770108599675
+        "x": 4.409448818897637,
+        "y": 3.826940987215308
       },
       "nextControl": {
-        "x": 6.312759292185251,
-        "y": 4.0301413936161214
+        "x": 5.9115162950894575,
+        "y": 4.238618739949361
       },
       "isLocked": false,
       "linkedName": null
@@ -52,24 +52,24 @@
         "y": 4.341715350097368
       },
       "prevControl": {
-        "x": 6.1095588857844385,
-        "y": 4.064008128016256
+        "x": 6.007958682584032,
+        "y": 4.1046482092964185
       },
       "nextControl": {
-        "x": 4.760344574617969,
-        "y": 4.540885600066475
+        "x": 4.759128551320547,
+        "y": 4.537411126070896
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.077554821776311,
-        "y": 5.012276691220049
+        "x": 3.4815002963339263,
+        "y": 5.581237829142324
       },
       "prevControl": {
-        "x": 4.517822368978072,
-        "y": 4.653289306578613
+        "x": 3.9217678435356857,
+        "y": 5.222250444500888
       },
       "nextControl": null,
       "isLocked": false,
@@ -78,7 +78,7 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.8,
+      "waypointRelativePos": 1.9,
       "rotationDegrees": 0,
       "rotateFast": true
     }
@@ -87,7 +87,7 @@
   "eventMarkers": [
     {
       "name": "IntakeUntilNote",
-      "waypointRelativePos": 0.35,
+      "waypointRelativePos": 0.0,
       "command": {
         "type": "sequential",
         "data": {
@@ -117,17 +117,17 @@
   ],
   "globalConstraints": {
     "maxVelocity": 4.5,
-    "maxAcceleration": 2.5,
+    "maxAcceleration": 3.5,
     "maxAngularVelocity": 300.0,
     "maxAngularAcceleration": 120.0
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -7.125016348901755,
+    "rotation": -0.9391909457354215,
     "rotateFast": false
   },
   "reversed": false,
   "folder": "Center_Right",
   "previewStartingState": null,
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

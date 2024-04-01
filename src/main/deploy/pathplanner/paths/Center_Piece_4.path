@@ -49,18 +49,13 @@
       "waypointRelativePos": 0.9,
       "rotationDegrees": -18.926404330479002,
       "rotateFast": true
-    },
-    {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": 0,
-      "rotateFast": false
     }
   ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "IntakeUntilNote",
-      "waypointRelativePos": 0.4,
+      "waypointRelativePos": 0.0,
       "command": {
         "type": "sequential",
         "data": {

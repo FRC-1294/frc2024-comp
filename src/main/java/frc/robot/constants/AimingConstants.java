@@ -20,12 +20,12 @@ import frc.robot.subsystems.AimingSubsystem.AimingMotorMode;
 public class AimingConstants {
     
     // Teleop Constant
-    public static final double MAX_ELEVATOR_TELEOP_INCREMENT = 0.01;
+    public static final double MAX_ELEVATOR_TELEOP_INCREMENT = 0.003;
     public static final double MAX_WRIST_TELEOP_INCREMENT = 0.2;
     
     
     // PID Constants
-    public static final PIDParameters mElevatorPIDConstants = new PIDParameters(7, 0, 0);
+    public static final PIDParameters mElevatorPIDConstants = new PIDParameters(13, 0, 0);
     public static final PIDParameters mWristPIDConstants = new PIDParameters(0.015, 0.001, 0.0, 0, 0);
     public static final double WRIST_KG = 0.03;
     public static final double ELEVATOR_FEEDFORWARD_CONSTANT = 0.05;
@@ -36,13 +36,13 @@ public class AimingConstants {
 
     // TODO: Calculate the ratio for the competition robot
     // Issue #281 has been created for the same. Link to the issue: https://github.com/FRC-1294/frc2024/issues/281
-    public static final double ELEVATOR_ROTATIONS_TO_METERS = 0.00626;
-	public static final double ELEVATOR_TOLERANCE_IN = 0.01;
+    public static final double ELEVATOR_ROTATIONS_TO_METERS = 0.45085 / 367.8760986328125 * 3;
+	public static final double ELEVATOR_TOLERANCE_IN = 0.00;
     public static final double WRIST_TOLERANCE_DEG = 2;
 
     // Soft Limits
     public static final double MAX_ELEVATOR_DIST_METERS = 0.45085;
-    public static final double MIN_ELEVATOR_DIST_METERS = 0; 
+    public static final double MIN_ELEVATOR_DIST_METERS = 0.01; 
     public static final double MAX_ELEVATOR_EXTENSION_VELOCITY = 0.1; //TBD
 
     public static final double MAX_WRIST_ROTATION = 110;
@@ -50,7 +50,7 @@ public class AimingConstants {
     public static final double MAX_WRIST_ROTATION_VELOCITY = 0;
 
     public static final double MAX_WRIST_PID_CONTRIBUTION = 0.6;
-    public static final double MAX_ELEVATOR_PID_CONTRIBUTION = 0.75;
+    public static final double MAX_ELEVATOR_PID_CONTRIBUTION = 1;
 
 
     // inaccurate values
@@ -103,29 +103,31 @@ public class AimingConstants {
     }
 
     public static double getPolynomialRegression(){
-        if (FieldConstants.getSpeakerDistance()>4.4){
+        if (FieldConstants.getSpeakerDistance()>4.8){
             return -15 + 16.1*FieldConstants.getSpeakerDistance() - 1.65*Math.pow(FieldConstants.getSpeakerDistance(), 2) + 0.0683*Math.pow(FieldConstants.getSpeakerDistance(), 3)
-            + (16.1 - 3.3*FieldConstants.getSpeakerDistance() + 0.2049*Math.pow(FieldConstants.getSpeakerDistance(),2))*0.12;
+            + (16.1 - 3.3*FieldConstants.getSpeakerDistance() + 0.2049*Math.pow(FieldConstants.getSpeakerDistance(),2))*0.0;
         }else{
             return -7.26 + 7.65*FieldConstants.getSpeakerDistance() + 1.27*Math.pow(FieldConstants.getSpeakerDistance(), 2) - 0.25*Math.pow(FieldConstants.getSpeakerDistance(), 3)
-            + (7.625 + 2.54*FieldConstants.getSpeakerDistance() - 0.75*Math.pow(FieldConstants.getSpeakerDistance(),2))*0.74;
+            + (7.625 + 2.54*FieldConstants.getSpeakerDistance() - 0.75*Math.pow(FieldConstants.getSpeakerDistance(),2))*0.43;
         }
         
         //return -25+16.3*dist+0.757*Math.pow(dist, 2)-0.349*Math.pow(dist, 3);
     }
 
     public static double getAutoAimWristToleranceDegrees(){
-        if (FieldConstants.getSpeakerDistance()>4.6){
-            return Math.max((16.1 - 3.3*FieldConstants.getSpeakerDistance() + 0.2049*Math.pow(FieldConstants.getSpeakerDistance(),2))
-            * TOLERANCE_DAMPENING_CONSTANT,MAX_WRIST_ACCURACY_DEG);
-        }else{
-            return Math.max((7.625 + 2.54*FieldConstants.getSpeakerDistance() - 0.75*Math.pow(FieldConstants.getSpeakerDistance(), 2))
-            * TOLERANCE_DAMPENING_CONSTANT,MAX_WRIST_ACCURACY_DEG);
-        }
+        // if (FieldConstants.getSpeakerDistance()>4.6){
+        //     return 1;
+        //     // return Math.max((16.1 - 3.3*FieldConstants.getSpeakerDistance() + 0.2049*Math.pow(FieldConstants.getSpeakerDistance(),2))
+        //     // * TOLERANCE_DAMPENING_CONSTANT,MAX_WRIST_ACCURACY_DEG);
+        // }else{
+        //     return Math.max((7.625 + 2.54*FieldConstants.getSpeakerDistance() - 0.75*Math.pow(FieldConstants.getSpeakerDistance(), 2))
+        //     * TOLERANCE_DAMPENING_CONSTANT,MAX_WRIST_ACCURACY_DEG);
+        // }
+        return 1;
     }
 
     public static double getSwerveAlignmentToleranceDeg(){
-        return 2;
+        return 2.0;
         //return Math.toDegrees(Math.atan2((FieldConstants.SPEAKER_WIDTH_METERS/2)-AimingConstants.ROTATION_PADDING_METERS,FieldConstants.getSpeakerDistance()));
     }
 } 

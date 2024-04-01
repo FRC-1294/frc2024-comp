@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.SelectCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.AutonomousCommands.AlignSpeaker;
+import frc.robot.commands.AutonomousCommands.StrangeIndexUntilLaunchCommand;
 import frc.robot.commands.AutonomousCommands.TimedHandoff;
 import frc.robot.constants.AimState;
 import frc.robot.subsystems.AimingSubsystem;
@@ -97,15 +98,20 @@ public class InitializePathPlanner{
 
     NamedCommands.registerCommand("ShootDynamic", new SequentialCommandGroup(
       new SelectCommand<>(Map.ofEntries(
-        Map.entry(true, new TimedHandoff(mIntake,mLauncher).withTimeout(2.5)),
+        Map.entry(true, new TimedHandoff(mIntake,mLauncher).withTimeout(5)),
         Map.entry(false, new PrintCommand("Failed to pick up Note"))
       ),()->IntakeSubsystem.pieceInIntake()),
-      new ParallelCommandGroup(
-            // new AlignSpeaker(mSwerve),
+      new SelectCommand<>(Map.ofEntries(
+        Map.entry(true, new SequentialCommandGroup(new ParallelCommandGroup(
+            new AlignSpeaker(mSwerve),
             mLauncher.waitUntilFlywheelSetpointCommand(AimState.PODIUM),
             mAiming.waitUntilAutoAimSetpoint()
-      ), 
-      mLauncher.indexUntilNoteLaunchedCommand()));
+            ),
+            new StrangeIndexUntilLaunchCommand(mLauncher),
+            mLauncher.indexUntilNoteLaunchedCommand()
+        ).withTimeout(5)),
+        Map.entry(false, new PrintCommand("Failed to index Note"))
+      ),()->mLauncher.pieceInIndexer())));
 
     NamedCommands.registerCommand("StartLauncherSW", mLauncher.waitUntilFlywheelSetpointCommand(AimState.SUBWOOFER));
     NamedCommands.registerCommand("StartLauncherAutoAim", mLauncher.waitUntilFlywheelSetpointCommand(AimState.PODIUM));
@@ -141,8 +147,8 @@ public class InitializePathPlanner{
     mSwerve::setChassisSpeed,
     new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in
                                       // your Constants class
-          new PIDConstants(5, 0.0, 0), // Translation PID constants
-          new PIDConstants(5, 0.0, 0), // Rotation PID constants
+          new PIDConstants(9, 0.0, 1.8), // Translation PID constants
+          new PIDConstants(6, 0.0, 0.2), // Rotation PID constants
           4.5, // Max module speed, in m/s
           0.4669, // Drive base radius in meters. Distance from robot center to furthest module.
           new ReplanningConfig(true, false) // Default path replanning config. See the API for the options

@@ -99,7 +99,7 @@ public class DefaultMechCommand{
         else if (getIntakeBeamBreak() && !getIndexerBeamBreak()) {
             if (AimState.HANDOFF.atState(mAimingSubsystem.getCurrentWristDegreees(),
                                          mAimingSubsystem.getCurrentElevatorDistance(),
-                                         mLauncherSubsystem.getCurrentVelocity())) {
+                                         mLauncherSubsystem.getCurrentVelocity(), mLauncherSubsystem.getOtherVelocity())) {
                 return mReadyForHandoff;
             } else {
                 return mIntaken;

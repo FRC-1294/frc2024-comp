@@ -11,7 +11,7 @@ import frc.robot.subsystems.SwerveSubsystem;
 
 public class FieldConstants {
     public static enum Blue {
-        SPEAKER(new Pose3d(new Translation3d(0, 5.6, 0.0), new Rotation3d(0.0, 0.0, 0.0)));
+        SPEAKER(new Pose3d(new Translation3d(0, 5.55, 0.0), new Rotation3d(0.0, 0.0, 0.0)));
 
         private final Pose3d pose;
 
@@ -27,7 +27,7 @@ public class FieldConstants {
     }
 
     public static enum Red {
-        SPEAKER(new Pose3d(new Translation3d(16.5, 5.6, 0.0), new Rotation3d(0.0, 0.0, 0.0)));
+        SPEAKER(new Pose3d(new Translation3d(16.5, 5.55, 0.0), new Rotation3d(0.0, 0.0, 0.0)));
 
         private final Pose3d pose;
 
@@ -42,7 +42,7 @@ public class FieldConstants {
         }
     }
 
-    public static final double SPEAKER_LENGTH_METERS = 0.36;
+    public static final double SPEAKER_LENGTH_METERS = 0.25;
     public static final double SPEAKER_WIDTH_METERS = 1.05;
 
     public static double getSpeakerDistance(Pose2d robotPose) {

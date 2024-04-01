@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import java.lang.reflect.Field;
+import java.sql.Driver;
 import java.util.Optional;
 import java.util.function.BooleanSupplier;
 import edu.wpi.first.math.MathUtil;
@@ -35,7 +36,7 @@ public class DefaultDriveCommand extends Command {
 
   
 
-  public static final PIDController mSpeakerAlignPID = new PIDController(4, 0, 0.02);
+  public static final PIDController mSpeakerAlignPID = new PIDController(3.2, 0, 0.08);
   public static final PIDController mAmpAlignPID = new PIDController(4, 0, 0.02);
   public static final PIDController mVelLock = new PIDController(4, 0, 0.3);
 
@@ -126,7 +127,7 @@ public class DefaultDriveCommand extends Command {
     if (Input.getNoteLock()){ //hold
       if (mLimelight != null && mLimelight.isDetectionValid()){
         rot = Math.toRadians(mNotePID.calculate(mLimelight.getNoteAngle(), 0.0));
-        isFieldOriented = false;
+        isFieldOriented = true;
       }
     }
 
@@ -152,8 +153,9 @@ public class DefaultDriveCommand extends Command {
   }
 
   public static boolean getAlignedToSpeaker(){
-    return (Math.abs(SwerveSubsystem.getRobotPose().getRotation().getDegrees()-getRotationToSpeakerDegrees()))<=AimingConstants.getSwerveAlignmentToleranceDeg()
-     && FieldConstants.getSpeakerDistance()<=AimingConstants.MAX_SHOT_DIST_METERS;
+    
+    return (Math.abs(SwerveSubsystem.getRobotPose().getRotation().getDegrees()-getRotationToSpeakerDegrees())<=AimingConstants.getSwerveAlignmentToleranceDeg())
+     && (FieldConstants.getSpeakerDistance()<=AimingConstants.MAX_SHOT_DIST_METERS || DriverStation.isAutonomous());
   }
 
   public static double getRotationToSpeakerDegrees(){

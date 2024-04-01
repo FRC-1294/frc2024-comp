@@ -22,6 +22,7 @@ import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.constants.CompConstants;
 import frc.robot.constants.FieldConstants;
 import frc.robot.robots.SwerveConfig;
@@ -73,6 +74,8 @@ public class SwerveSubsystem extends SubsystemBase {
     //jank.update(getRotation2d(), getModulePositions());
     // This method will be called once per scheduler run    
     mOdometry.update(getRotation2d(), getModulePositions());
+
+    SmartDashboard.putBoolean("SpeakerAligned", DefaultDriveCommand.getAlignedToSpeaker());
 
     //SmartDashboard.putNumber("Pose Est Error", jank.getPoseMeters().minus(mOdometry.getEstimatedPosition()).getTranslation().getNorm());
     SmartDashboard.putNumber("XPos", mOdometry.getEstimatedPosition().getX());
