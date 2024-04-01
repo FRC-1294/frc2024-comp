@@ -36,7 +36,7 @@ public class AimingConstants {
 
     // TODO: Calculate the ratio for the competition robot
     // Issue #281 has been created for the same. Link to the issue: https://github.com/FRC-1294/frc2024/issues/281
-    public static final double ELEVATOR_ROTATIONS_TO_METERS = 0.45085 / 367.8760986328125 * 3;
+    public static final double ELEVATOR_ROTATIONS_TO_METERS = 0.45085 / 367.8760986328125;
 	public static final double ELEVATOR_TOLERANCE_IN = 0.00;
     public static final double WRIST_TOLERANCE_DEG = 2;
 

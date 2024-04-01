@@ -38,7 +38,7 @@ public class DefaultDriveCommand extends Command {
 
   public static final PIDController mSpeakerAlignPID = new PIDController(3.2, 0, 0.08);
   public static final PIDController mAmpAlignPID = new PIDController(4, 0, 0.02);
-  public static final PIDController mVelLock = new PIDController(4, 0, 0.3);
+  public static final PIDController mVelLock = new PIDController(5, 0, 0.3);
 
   public DefaultDriveCommand(SwerveSubsystem swerve, Limelight limelight) {
     mSwerve = swerve;
@@ -67,7 +67,7 @@ public class DefaultDriveCommand extends Command {
     double x = -Input.getJoystickY();
     double y = -Input.getJoystickX();
     double rot = -Input.getRot();
-    boolean isFieldOriented = true;
+
 
     if (Input.resetGyro()) { //press
       mSwerve.resetGyro();
@@ -98,12 +98,6 @@ public class DefaultDriveCommand extends Command {
     rot *= mSwerve.mConfig.TELE_MAX_ROT_SPEED_RAD_SEC;
 
 
-    // autoyaw from calculation based autoaim
-    // if (Input.getNoteLock()) {
-    //   rot = yawAutoaim.calculate(SwerveSubsystem.getRobotPose().getRotation().getDegrees(), Units.radiansToDegrees(Autoaim.getNeededRobotYaw()));
-    //   rot = Math.toRadians(rot);
-    // }
-
 
     if (Input.atanAlignSpeaker()){ //hold
       rot = Math.toRadians(
@@ -127,7 +121,6 @@ public class DefaultDriveCommand extends Command {
     if (Input.getNoteLock()){ //hold
       if (mLimelight != null && mLimelight.isDetectionValid()){
         rot = Math.toRadians(mNotePID.calculate(mLimelight.getNoteAngle(), 0.0));
-        isFieldOriented = true;
       }
     }
 
@@ -142,7 +135,7 @@ public class DefaultDriveCommand extends Command {
 
     SmartDashboard.putBoolean("PodiumAligned", mSpeakerAlignPID.atSetpoint());
     SmartDashboard.putBoolean("Precision Toggle", mIsPrecisionToggle);
-    mSwerve.setChassisSpeed(x, y, rot, isFieldOriented, false);
+    mSwerve.setChassisSpeed(x, y, rot, true, false);
   }
 
 
