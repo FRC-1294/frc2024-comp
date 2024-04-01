@@ -19,6 +19,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -47,6 +48,11 @@ public class SwerveSubsystem extends SubsystemBase {
   private Field2d mField = new Field2d();
   private SwerveDriveOdometry jank;
 
+  private double currentTime = 0.0;
+  private ChassisSpeeds currentSpeeds;
+
+  private double lastTime = 0.0;
+  private ChassisSpeeds lastSpeeds;
 
   public SwerveSubsystem(SwerveConfig configuration) {
     // Populating Instance Variables
@@ -71,6 +77,18 @@ public class SwerveSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+
+    double lastTime = currentTime;
+    lastSpeeds = currentSpeeds;
+
+    currentTime = Timer.getFPGATimestamp();
+    currentSpeeds = ChassisSpeeds.fromRobotRelativeSpeeds(getChassisSpeeds(), getRotation2d());
+
+    double deltaTime = currentTime - lastTime;
+    double accelerationX = (currentSpeeds.vxMetersPerSecond - lastSpeeds.vxMetersPerSecond) / deltaTime;
+    SmartDashboard.putNumber("accelerationX", accelerationX);
+
+
     //jank.update(getRotation2d(), getModulePositions());
     // This method will be called once per scheduler run    
     mOdometry.update(getRotation2d(), getModulePositions());
