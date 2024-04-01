@@ -104,8 +104,8 @@ public abstract class MechState {
     }
 
     public Command controlElevator(double increment) {
-        return new InstantCommand();
-    }
+        return new InstantCommand(()->mAimingSubsystem.changeDesiredElevatorPosition(increment),mAimingSubsystem);
+     }
 
     public Command ClimbExtendedState() {
        return new InstantCommand(()->mAimingSubsystem.setDesiredSetpoint(AimState.CLIMB_UP));
