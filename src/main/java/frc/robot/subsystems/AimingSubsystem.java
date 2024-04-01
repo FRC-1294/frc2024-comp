@@ -323,10 +323,14 @@ public class AimingSubsystem extends SubsystemBase {
 
   public void setDesiredSetpoint(AimState state) {
     if(state != AimState.AUTO_AIM){
-      mDesiredElevatorDistanceIn = state.mElevatorHeightMeters;
-      mDesiredWristRotationDeg = state.mWristAngleDegrees;
-      mWristController.setTolerance(state.mWristToleranceDegrees);
-      mElevatorController.setTolerance(state.mElevatorToleranceMeters);
+      if(state.mElevatorHeightMeters != -1){
+        mDesiredElevatorDistanceIn = state.mElevatorHeightMeters;
+        mElevatorController.setTolerance(state.mElevatorToleranceMeters);
+      }
+      if (state.mWristAngleDegrees != -1){
+        mDesiredWristRotationDeg = state.mWristAngleDegrees;
+        mWristController.setTolerance(state.mWristToleranceDegrees);
+      }
     }
   }
 
