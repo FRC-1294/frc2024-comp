@@ -153,7 +153,6 @@ public class DefaultDriveCommand extends Command {
   }
 
   public static boolean getAlignedToSpeaker(){
-    
     return (Math.abs(SwerveSubsystem.getRobotPose().getRotation().getDegrees()-getRotationToSpeakerDegrees())<=AimingConstants.getSwerveAlignmentToleranceDeg())
      && (FieldConstants.getSpeakerDistance()<=AimingConstants.MAX_SHOT_DIST_METERS || DriverStation.isAutonomous());
   }

@@ -79,7 +79,7 @@ public class DefaultMechCommand{
         }));
 
         BooleanSupplier readyToAim = ()-> mMechState == mReadyForAim;
-        new Trigger(readyToAim).onTrue(new InstantCommand(()->Input.enableRumble(JoystickConstants.XBOX_RUMBLE_SOFT)));
+        new Trigger(readyToAim).onTrue(new InstantCommand(()->Input.enableRumble(JoystickConstants.XBOX_RUMBLE_MEDIUM)));
 
         BooleanSupplier readyToLaunch = ()-> mMechState == mReadyForLaunch;
         new Trigger(readyToLaunch).onTrue(new InstantCommand(()->Input.enableRumble(JoystickConstants.XBOX_RUMBLE_VIGEROUS)));
