@@ -78,9 +78,15 @@ public class AimingConstants {
 
     public static final int WRIST_THROUGHBORE_ENCODER_ID = 0;
     public static final double WRIST_THROUGHBORE_GEAR_RATIO = 1;
-    public static final double WRIST_THROUGHBORE_ENCODER_OFFSET = 271+1+62.2+1-24.2-54.1-89.2-4.1+0.3-0.15-.7-0.48+298.2-177.44-0.6+0.65+9.2-94.2-0.62+255.0-95.0;
+    public static final double WRIST_THROUGHBORE_ENCODER_OFFSET = 271+1+62.2+1-24.2-54.1-89.2-4.1+0.3-0.15-.7-0.48+298.2-177.44-0.6+0.65+9.2-94.2-0.62+255.0-95.0-0.43;
     public static final double COG_OFFSET = 22;
     public static final double WRIST_KS = 0.005;
+    public static double AUTO_AIM_DERIVATIVE_CONTRIB_EQ1 = 0.25;
+    public static double AUTO_AIM_DERIVATIVE_CONTRIB_EQ2 = 0.0;
+
+    public static double AUTO_AIM_DERIVATIVE_EQ1_INCREMENT = 0.1;
+    public static double AUTO_AIM_DERIVATIVE_EQ2_INCREMENT = 0.1;
+
 
 
     // If false, then motors are physically inverted
@@ -105,10 +111,10 @@ public class AimingConstants {
     public static double getPolynomialRegression(){
         if (FieldConstants.getSpeakerDistance()>4.8){
             return -15 + 16.1*FieldConstants.getSpeakerDistance() - 1.65*Math.pow(FieldConstants.getSpeakerDistance(), 2) + 0.0683*Math.pow(FieldConstants.getSpeakerDistance(), 3)
-            + (16.1 - 3.3*FieldConstants.getSpeakerDistance() + 0.2049*Math.pow(FieldConstants.getSpeakerDistance(),2))*0.0;
+            + (16.1 - 3.3*FieldConstants.getSpeakerDistance() + 0.2049*Math.pow(FieldConstants.getSpeakerDistance(),2))*AUTO_AIM_DERIVATIVE_CONTRIB_EQ2 ;
         }else{
             return -7.26 + 7.65*FieldConstants.getSpeakerDistance() + 1.27*Math.pow(FieldConstants.getSpeakerDistance(), 2) - 0.25*Math.pow(FieldConstants.getSpeakerDistance(), 3)
-            + (7.625 + 2.54*FieldConstants.getSpeakerDistance() - 0.75*Math.pow(FieldConstants.getSpeakerDistance(),2))*0.43;
+            + (7.625 + 2.54*FieldConstants.getSpeakerDistance() - 0.75*Math.pow(FieldConstants.getSpeakerDistance(),2))*AUTO_AIM_DERIVATIVE_CONTRIB_EQ1;
         }
         
         //return -25+16.3*dist+0.757*Math.pow(dist, 2)-0.349*Math.pow(dist, 3);

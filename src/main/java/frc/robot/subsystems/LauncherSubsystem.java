@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.commands.DefaultMechCommand;
 import frc.robot.constants.AimState;
@@ -162,12 +163,14 @@ public class LauncherSubsystem extends SubsystemBase {
   }
 
   public Command indexUntilNoteLaunchedCommand() {
-    return new FunctionalCommand(
+    return new SequentialCommandGroup(new FunctionalCommand(
     () -> runIndexer(LauncherConstants.INDEXER_VELOCITY_LAUNCHING), 
     ()->{},
-    (Interruptable)->{DefaultMechCommand.isLaunching = false;
-      stopIndexer();}, 
-    ()->!pieceInIndexer()
+    (Interruptable)->{
+      }, 
+    ()->!pieceInIndexer()),new WaitCommand(0.5),
+    new InstantCommand(()->{DefaultMechCommand.isLaunching = false;
+      stopIndexer();})
     );
   } 
 

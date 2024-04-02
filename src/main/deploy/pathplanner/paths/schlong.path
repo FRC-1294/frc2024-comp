@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.346033358733384,
-        "y": 2.8651257302514592
+        "x": 3.0750994835323007,
+        "y": 3.061552789772246
       },
       "isLocked": false,
       "linkedName": "Center_Right_Shot"
     },
     {
       "anchor": {
-        "x": 8.439590212513759,
-        "y": 0.7112014224028448
+        "x": 8.29734992803319,
+        "y": 0.6976547286427902
       },
       "prevControl": {
-        "x": 8.602150537634406,
-        "y": 0.6502413004826009
+        "x": 8.36508339683346,
+        "y": 0.8128016256032512
       },
       "nextControl": {
-        "x": 8.287116212547728,
-        "y": 0.768379172390107
+        "x": 8.24144482479765,
+        "y": 0.6026160531423692
       },
       "isLocked": false,
       "linkedName": null
@@ -36,8 +36,8 @@
         "y": 3.2173397680128692
       },
       "prevControl": {
-        "x": 3.8675810684954706,
-        "y": 2.546778426890187
+        "x": 3.325713318093303,
+        "y": 2.8380323427313527
       },
       "nextControl": null,
       "isLocked": false,
@@ -76,6 +76,25 @@
               "type": "named",
               "data": {
                 "name": "Handoff"
+              }
+            },
+            {
+              "type": "parallel",
+              "data": {
+                "commands": [
+                  {
+                    "type": "named",
+                    "data": {
+                      "name": "StartLauncherAutoAim"
+                    }
+                  },
+                  {
+                    "type": "named",
+                    "data": {
+                      "name": "AutoAimWristSetpoint"
+                    }
+                  }
+                ]
               }
             }
           ]

@@ -42,7 +42,7 @@ public class StrangeIndexUntilLaunchCommand extends Command {
     }
     if (!mLauncherSubsystem.pieceInIndexer() && currentPassThrough){
       achievedBackness = true;
-      mLauncherSubsystem.runIndexer(0.25);
+      mLauncherSubsystem.runIndexer(1);
     }
 }
 

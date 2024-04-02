@@ -22,6 +22,9 @@ public class ReadyForLaunch extends MechState {
     @Override
     public Command launch() {
       //return mLauncherSubsystem.indexUntilNoteLaunchedCommand();
+      if(DefaultMechCommand.mDesiredState == AimState.SUBWOOFER || DefaultMechCommand.mDesiredState == AimState.AMP){
+        return MechState.mLaunchCommand;
+      }
       return MechState.mStrangeIndexUntilLaunchCommand;
     }
 

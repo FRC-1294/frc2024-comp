@@ -31,7 +31,8 @@ public abstract class MechState {
     public static Command mBrakeIndexerCommand;
     public static Command mStaticAutoAimCommand;
     public static Command mStrangeIndexUntilLaunchCommand;
-
+    public static Command mIncrementWristAutoAimCommand;
+    public static Command mDecrementWristAutoAimCommand;
     public Command mAimStatePositionCommand;
     public static Command mCalculationAutoAimCommand;
     
@@ -50,14 +51,27 @@ public abstract class MechState {
         mPodiumPositionCommand = new ParallelCommandGroup(mAimingSubsystem.waitUntilSetpoint(AimState.PODIUM), mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM));
         mLaunchCommand = mLauncherSubsystem.indexUntilNoteLaunchedCommand();
         mBrakeIndexerCommand = new InstantCommand(()->mLauncherSubsystem.stopIndexer(),mLauncherSubsystem);
+        
         mStaticAutoAimCommand = new ParallelCommandGroup(
             mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM),
             mAimingSubsystem.waitUntilAutoAimSetpointTracked()
         );
+
         mStrangeIndexUntilLaunchCommand = new SequentialCommandGroup(
             new StrangeIndexUntilLaunchCommand(launcherSubsystem),
-            mLaunchCommand
+            mLauncherSubsystem.indexUntilNoteLaunchedCommand()
         );
+
+        mIncrementWristAutoAimCommand = new InstantCommand(()->{
+            AimingConstants.AUTO_AIM_DERIVATIVE_CONTRIB_EQ1+=AimingConstants.AUTO_AIM_DERIVATIVE_EQ1_INCREMENT;
+            AimingConstants.AUTO_AIM_DERIVATIVE_CONTRIB_EQ2+=AimingConstants.AUTO_AIM_DERIVATIVE_EQ2_INCREMENT;
+        });
+
+        mDecrementWristAutoAimCommand = new InstantCommand(()->{
+            AimingConstants.AUTO_AIM_DERIVATIVE_CONTRIB_EQ1-=AimingConstants.AUTO_AIM_DERIVATIVE_EQ1_INCREMENT;
+            AimingConstants.AUTO_AIM_DERIVATIVE_CONTRIB_EQ2-=AimingConstants.AUTO_AIM_DERIVATIVE_EQ2_INCREMENT;
+        });
+
         // new ParallelCommandGroup(mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM), 
         // mAimingSubsystem.waitUntilWristSetpoint(() -> AimingConstants.getPolynomialRegression(FieldConstants.getSpeakerDistance())));
     }
@@ -156,6 +170,13 @@ public abstract class MechState {
     }
     public Command setWristDeg(double deg){
         return new InstantCommand();
+    }
+    public Command incrementWristAutoAimSetpoint(){
+        return mIncrementWristAutoAimCommand;
+    }
+
+    public Command decrementWristAutoAimSetpoint(){
+        return mIncrementWristAutoAimCommand;
     }
 
 }

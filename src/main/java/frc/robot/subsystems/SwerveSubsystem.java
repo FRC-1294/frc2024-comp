@@ -49,10 +49,10 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveDriveOdometry jank;
 
   private double currentTime = 0.0;
-  private ChassisSpeeds currentSpeeds;
+  private ChassisSpeeds currentSpeeds = new ChassisSpeeds();
 
   private double lastTime = 0.0;
-  private ChassisSpeeds lastSpeeds;
+  private ChassisSpeeds lastSpeeds = new ChassisSpeeds();
 
   public SwerveSubsystem(SwerveConfig configuration) {
     // Populating Instance Variables
@@ -79,6 +79,7 @@ public class SwerveSubsystem extends SubsystemBase {
   public void periodic() {
 
     double lastTime = currentTime;
+    
     lastSpeeds = currentSpeeds;
 
     currentTime = Timer.getFPGATimestamp();

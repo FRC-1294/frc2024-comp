@@ -100,8 +100,8 @@
         "y": 3.2173397680128692
       },
       "prevControl": {
-        "x": 3.1360596054525445,
-        "y": 2.993819320971975
+        "x": 2.987045974091948,
+        "y": 3.129286258572517
       },
       "nextControl": null,
       "isLocked": false,
@@ -140,6 +140,25 @@
               "type": "named",
               "data": {
                 "name": "Handoff"
+              }
+            },
+            {
+              "type": "parallel",
+              "data": {
+                "commands": [
+                  {
+                    "type": "named",
+                    "data": {
+                      "name": "AutoAimWristSetpoint"
+                    }
+                  },
+                  {
+                    "type": "named",
+                    "data": {
+                      "name": "StartLauncherAutoAim"
+                    }
+                  }
+                ]
               }
             }
           ]
