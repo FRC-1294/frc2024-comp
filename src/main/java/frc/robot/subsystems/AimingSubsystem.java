@@ -192,8 +192,8 @@ public class AimingSubsystem extends SubsystemBase {
     if (wristPIDCalculation < 0) {
       maxPIDContribution = 0.3;
     }
-    if (wristPIDCalculation < 0 && mCurrentWristRotationDeg<20) {
-      maxPIDContribution *= mCurrentWristRotationDeg/20;
+    if (wristPIDCalculation < 0 && mCurrentWristRotationDeg<30) {
+      maxPIDContribution *= mCurrentWristRotationDeg/50;
     } 
 
     wristPIDCalculation = MathUtil.clamp(wristPIDCalculation, -maxPIDContribution, maxPIDContribution);

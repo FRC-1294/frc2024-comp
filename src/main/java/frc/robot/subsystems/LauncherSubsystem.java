@@ -168,7 +168,7 @@ public class LauncherSubsystem extends SubsystemBase {
     ()->{},
     (Interruptable)->{
       }, 
-    ()->!pieceInIndexer()),new WaitCommand(0.5),
+    ()->!pieceInIndexer()),new WaitCommand(0.1),
     new InstantCommand(()->{DefaultMechCommand.isLaunching = false;
       stopIndexer();})
     );

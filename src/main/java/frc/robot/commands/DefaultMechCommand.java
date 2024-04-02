@@ -87,6 +87,10 @@ public class DefaultMechCommand{
         BooleanSupplier readyToIntake = ()-> mMechState == mReadyForIntake;
         new Trigger(readyToIntake).onTrue(new InstantCommand(()->{
             Input.disableRumble();}));
+
+        // BooleanSupplier ultrainstinct = ()-> mMechState == mUltraInstinct;
+        // new Trigger(ultrainstinct).onTrue(new InstantCommand(()->{
+        //    isLaunching = false;}));
     }
 
     public static MechState determineState() {
@@ -142,7 +146,7 @@ public class DefaultMechCommand{
             mMechState.handoffPosition().schedule();
             mMechState.brakeLauncher().schedule();            
         } else if(Input.getDPad() == Input.DPADDOWN){
-            mMechState.staticAutoAim().schedule();
+            mMechState.podiumPosition().schedule();
         }
         if (Input.getLeftBumper()) {
             mMechState.runIntakeMotors().schedule();

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DefaultMechCommand;
+import frc.robot.constants.FieldConstants;
 import frc.robot.constants.LauncherConstants;
 import frc.robot.subsystems.LauncherSubsystem;
 
@@ -56,6 +57,6 @@ public class StrangeIndexUntilLaunchCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return currentPassThrough && mLauncherSubsystem.pieceInIndexer() && achievedBackness; 
+    return currentPassThrough && mLauncherSubsystem.pieceInIndexer() && achievedBackness || FieldConstants.getSpeakerDistance() < 1.6; 
   }
 }
