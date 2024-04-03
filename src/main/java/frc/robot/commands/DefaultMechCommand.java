@@ -42,6 +42,9 @@ public class DefaultMechCommand{
     public static AimState mDesiredState = AimState.HANDOFF;
     public static boolean isLaunching = false;
 
+    boolean isDownPressed = false;
+    boolean isUpPressed = false;
+
     public DefaultMechCommand(IntakeSubsystem intakeSubsystem, LauncherSubsystem launcherSubsystem, AimingSubsystem aimingSubsystem) {
         mIntakeSubsystem = intakeSubsystem;
         mLauncherSubsystem = launcherSubsystem;
@@ -87,6 +90,10 @@ public class DefaultMechCommand{
         BooleanSupplier readyToIntake = ()-> mMechState == mReadyForIntake;
         new Trigger(readyToIntake).onTrue(new InstantCommand(()->{
             Input.disableRumble();}));
+
+        // BooleanSupplier launch = ()-> Input.getRightBumper();
+        // new Trigger(launch).onTrue(mMechState.launch());
+
 
         // BooleanSupplier ultrainstinct = ()-> mMechState == mUltraInstinct;
         // new Trigger(ultrainstinct).onTrue(new InstantCommand(()->{
@@ -145,8 +152,6 @@ public class DefaultMechCommand{
         else if (Input.getB()) {
             mMechState.handoffPosition().schedule();
             mMechState.brakeLauncher().schedule();            
-        } else if(Input.getDPad() == Input.DPADDOWN){
-            mMechState.podiumPosition().schedule();
         }
         if (Input.getLeftBumper()) {
             mMechState.runIntakeMotors().schedule();
@@ -171,9 +176,23 @@ public class DefaultMechCommand{
         if (Math.abs(Input.getRightStickY()) > 0.1) {
             mMechState.controlElevator(Input.getRightStickY()*AimingConstants.MAX_ELEVATOR_TELEOP_INCREMENT*1.5).schedule();
         }
-        if (Input.getDPad() == Input.DPADUP) {
-            mMechState.emergencyOuttake().schedule();
+        if (Input.getDPad() == Input.DPADUP && !isUpPressed) {
+            mMechState.decrementWristAutoAimSetpoint().schedule();
+            isUpPressed = true;
         }
+        else if (Input.getDPad() == Input.DPADDOWN && !isDownPressed) {
+            mMechState.incrementWristAutoAimSetpoint().schedule();
+            isDownPressed = true;
+        }
+
+        if (Input.getDPad() != Input.DPADDOWN){
+            isDownPressed = false;
+        }
+
+        if (Input.getDPad() != Input.DPADUP){
+            isUpPressed = false;
+        }
+
         if (Input.getDPad() == Input.DPADRIGHT){
             mUseUltraInstinct = true;
         }
@@ -181,12 +200,13 @@ public class DefaultMechCommand{
             mUseUltraInstinct = false;
         }
 
-
+        
         SmartDashboard.putBoolean("isLaunching", isLaunching);
         SmartDashboard.putString("DesiredState", mDesiredState.name());
         SmartDashboard.putString("CurrentState", mMechState.getClass().getSimpleName());
         SmartDashboard.putBoolean("AutoAim Scheduled", mMechState.mStaticAutoAimCommand.isScheduled());
         SmartDashboard.putNumber("AutoAimPolynomial", AimingConstants.getPolynomialRegression());
+        SmartDashboard.putNumber("AutoAimDerivativeContrib", AimingConstants.AUTO_AIM_DERIVATIVE_CONTRIB_EQ1);
 
     }
 

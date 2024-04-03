@@ -47,7 +47,7 @@ public class UltraInstinct extends MechState {
 
     @Override
     public Command launch() {
-       return mStrangeIndexUntilLaunchCommand;
+       return MechState.mStrangeIndexUntilLaunchCommand;
     }
 
     @Override

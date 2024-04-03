@@ -64,12 +64,10 @@ public abstract class MechState {
 
         mIncrementWristAutoAimCommand = new InstantCommand(()->{
             AimingConstants.AUTO_AIM_DERIVATIVE_CONTRIB_EQ1+=AimingConstants.AUTO_AIM_DERIVATIVE_EQ1_INCREMENT;
-            AimingConstants.AUTO_AIM_DERIVATIVE_CONTRIB_EQ2+=AimingConstants.AUTO_AIM_DERIVATIVE_EQ2_INCREMENT;
         });
 
         mDecrementWristAutoAimCommand = new InstantCommand(()->{
             AimingConstants.AUTO_AIM_DERIVATIVE_CONTRIB_EQ1-=AimingConstants.AUTO_AIM_DERIVATIVE_EQ1_INCREMENT;
-            AimingConstants.AUTO_AIM_DERIVATIVE_CONTRIB_EQ2-=AimingConstants.AUTO_AIM_DERIVATIVE_EQ2_INCREMENT;
         });
 
         // new ParallelCommandGroup(mLauncherSubsystem.waitUntilFlywheelSetpointCommand(AimState.PODIUM), 
@@ -176,7 +174,7 @@ public abstract class MechState {
     }
 
     public Command decrementWristAutoAimSetpoint(){
-        return mIncrementWristAutoAimCommand;
+        return mDecrementWristAutoAimCommand;
     }
 
 }

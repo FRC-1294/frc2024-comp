@@ -75,7 +75,7 @@ public class Input {
   }
 
   public static boolean getRightBumper() {
-    return mXboxController.getRightBumper();
+    return mXboxController.getRightBumperPressed();
   }
 
   public static double getLeftTrigger() {

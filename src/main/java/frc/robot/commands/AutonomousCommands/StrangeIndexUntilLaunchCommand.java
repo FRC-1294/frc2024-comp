@@ -4,6 +4,7 @@
 
 package frc.robot.commands.AutonomousCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -43,7 +44,7 @@ public class StrangeIndexUntilLaunchCommand extends Command {
     }
     if (!mLauncherSubsystem.pieceInIndexer() && currentPassThrough){
       achievedBackness = true;
-      mLauncherSubsystem.runIndexer(1);
+      mLauncherSubsystem.runIndexer(.3);
     }
 }
 
@@ -51,12 +52,13 @@ public class StrangeIndexUntilLaunchCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     // mLauncherSubsystem.stopIndexer();
+    SmartDashboard.putBoolean("Ended", true);
   }
   
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return currentPassThrough && mLauncherSubsystem.pieceInIndexer() && achievedBackness || FieldConstants.getSpeakerDistance() < 1.6; 
+    return (currentPassThrough && mLauncherSubsystem.pieceInIndexer() && achievedBackness ) || FieldConstants.getSpeakerDistance() < 1.6; 
   }
 }
