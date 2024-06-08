@@ -39,6 +39,8 @@
 # Compiled class file
 *.class
 
+src/main/java/frc/robot/BuildConstants.java
+
 # Log file
 *.log
 
