@@ -5,10 +5,8 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -20,37 +18,28 @@ import frc.robot.constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new Intake. */
-  private final CANSparkMax mIntakeMotorInner = new CANSparkMax(IntakeConstants.INTAKE_SPARK_ID_INNER, MotorType.kBrushless);
-  private final CANSparkMax mIntakeMotorOuter = new CANSparkMax(IntakeConstants.INTAKE_SPARK_ID_OUTER, MotorType.kBrushless);
-  private static final DigitalInput mBeamBreak = new DigitalInput(IntakeConstants.INTAKE_BEAMBREAK_ID);
+  private final CANSparkMax mIntakeMotorInner;
+  private final CANSparkMax mIntakeMotorOuter;
+  private final DigitalInput mBeamBreak;
   private boolean beamBreakOverride = false;
 
   public IntakeSubsystem() {
-    mIntakeMotorInner.restoreFactoryDefaults();
-    mIntakeMotorOuter.restoreFactoryDefaults();
-    //mIntakeMotorInner.setSmartCurrentLimit(IntakeConstants.SMART_CURRENT_LIMIT_INNER); //set current limit as to not burn out motor
+    mIntakeMotorInner = new CANSparkMax(IntakeConstants.INTAKE_SPARK_ID_INNER, MotorType.kBrushless);
+    mIntakeMotorInner.setSmartCurrentLimit(IntakeConstants.SMART_CURRENT_LIMIT_INNER); //set current limit as to not burn out motor
     mIntakeMotorInner.setInverted(IntakeConstants.INTAKE_INVERTED_INNER);
-    mIntakeMotorInner.enableVoltageCompensation(IntakeConstants.NOMINAL_VOLTAGE);
- 
-    //mIntakeMotorOuter.setSmartCurrentLimit(IntakeConstants.SMART_CURRENT_LIMIT_OUTER); //set current limit as to not burn out motor
+    mIntakeMotorInner.disableVoltageCompensation();//No voltage comp since we want intake to run at full power
+
+    mIntakeMotorOuter = new CANSparkMax(IntakeConstants.INTAKE_SPARK_ID_OUTER, MotorType.kBrushless);
+    mIntakeMotorOuter.setSmartCurrentLimit(IntakeConstants.SMART_CURRENT_LIMIT_OUTER); //set current limit as to not burn out motor
     mIntakeMotorOuter.setInverted(IntakeConstants.INTAKE_INVERTED_OUTER);
-    mIntakeMotorOuter.enableVoltageCompensation(IntakeConstants.NOMINAL_VOLTAGE);
+    mIntakeMotorOuter.disableVoltageCompensation();//No voltage comp since we want intake to run at full power
 
-
-    mIntakeMotorInner.setIdleMode(IdleMode.kBrake);
-    mIntakeMotorOuter.setIdleMode(IdleMode.kBrake);
-
-    mIntakeMotorInner.burnFlash();
-    mIntakeMotorOuter.burnFlash();
+    mBeamBreak = new DigitalInput(IntakeConstants.INTAKE_BEAMBREAK_ID);
   }
 
   @Override
   public void periodic() {
-    // if (pieceInIntake() && !beamBreakOverride){
-    //   stopMotors();
-    // }
-    SmartDashboard.putBoolean("Piece in Intake", pieceInIntake());
-    SmartDashboard.putNumber("IntakeSpeed", mIntakeMotorInner.getAppliedOutput());
+    // no periodic, would cause errors with noteToLauncher
   }
 
   /**
@@ -60,23 +49,6 @@ public class IntakeSubsystem extends SubsystemBase {
   public void intakeMotorsAtSpeed(double percentOutput){
     mIntakeMotorInner.set(percentOutput);
     mIntakeMotorOuter.set(percentOutput);
-  }
-
-  public void innerMotorAtSpeed(double percentOutput){
-    mIntakeMotorInner.set(percentOutput);
-  }
-
-  public void outerMotorAtSpeed(double percentOutput){
-    mIntakeMotorOuter.set(percentOutput);
-  }
-
-  public void runIntakeMotors(){
-    mIntakeMotorInner.set(IntakeConstants.ACTIVE_INTAKE_SPEED);
-    mIntakeMotorOuter.set(IntakeConstants.ACTIVE_INTAKE_SPEED);
-  }
-
-  public void noteToLauncher() {
-    mIntakeMotorInner.set(IntakeConstants.ACTIVE_INTAKE_SPEED);
   }
 
   public void stopMotors() {
@@ -92,7 +64,7 @@ public class IntakeSubsystem extends SubsystemBase {
     return new FunctionalCommand(() -> intakeMotorsAtSpeed(IntakeConstants.ACTIVE_INTAKE_SPEED), null, interrupted -> stopMotors(), this::functionalCommandIsFinished, this);
   }
 
-  public static boolean pieceInIntake(){
+  public boolean pieceInIntake(){
     return !mBeamBreak.get();
   }
   public boolean toggleBeamBreakOverride(){
@@ -102,5 +74,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private boolean functionalCommandIsFinished() {
     return pieceInIntake() || Input.getLeftBumper();
+  }
+
+  public double[] getIntakeSpeed() {
+    return new double[] {mIntakeMotorInner.get(), mIntakeMotorOuter.get()};
   }
 }

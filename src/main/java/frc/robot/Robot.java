@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
 import frc.robot.commands.InitializePathPlanner;
 import frc.robot.commands.SwerveFrictionCharacterization;
 import frc.robot.commands.SwerveVoltageCharacterization;
+import frc.robot.commands.TestAllSubsystems;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,6 +26,7 @@ import frc.robot.commands.SwerveVoltageCharacterization;
  */
 public class Robot extends TimedRobot {
   private SendableChooser<Command> pathSelector = new SendableChooser<>();
+  RobotContainer robotContainer = new RobotContainer();
 
 
   /**
@@ -35,14 +37,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-   
-
-    RobotContainer robotContainer = new RobotContainer();
-    
+       
     new InitializePathPlanner(robotContainer.getSwerveSubsystem()).initialize();
     
     SmartDashboard.putData("Pick your Auton...",pathSelector);
-
+    pathSelector.addOption("test", new TestAllSubsystems(robotContainer.getIntakeSubsystem(), robotContainer.getAimingSubsystem(), robotContainer.getLauncherSubsystem()));
     pathSelector.addOption("kSCharacterization", new SwerveFrictionCharacterization(robotContainer.getSwerveSubsystem()));
     pathSelector.addOption("kVCharacterization", new SwerveVoltageCharacterization(robotContainer.getSwerveSubsystem()));
     pathSelector.addOption("4 Piece V1", AutoBuilder.buildAuto("4_Piece_V1"));

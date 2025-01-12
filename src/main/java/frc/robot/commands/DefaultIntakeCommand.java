@@ -32,7 +32,7 @@ public class DefaultIntakeCommand extends Command {
     }
 
     if (Input.getLeftTrigger()>0.1) {
-      if (IntakeSubsystem.pieceInIntake()) {
+      if (mIntake.pieceInIntake()) {
         mIntake.intakeMotorsAtSpeed(IntakeConstants.HANDOFF_SPEED);
       } else {
         mIntake.intakeMotorsAtSpeed(Input.getLeftTrigger());
